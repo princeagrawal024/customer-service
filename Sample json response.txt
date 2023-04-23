@@ -1,0 +1,183 @@
+Sample Responses of API: 
+
+------------------------------------
+1. GET http://localhost:8080/api/v1/customers
+Response:
+[
+    {
+        "id": 100,
+        "firstName": "prince",
+        "lastName": "agrawal",
+        "address": "Flat no: C-12345, Life Republic, Main Road Ranchi 829122",
+        "dateOfBirth": "1995-08-18T18:30:00.000+00:00",
+        "ssn": 989889894
+    },
+    {
+        "id": 102,
+        "firstName": "jeff",
+        "lastName": "bzz",
+        "address": "Flat no: G-221, Blueride, Hinjewadi, Pune 411032",
+        "dateOfBirth": "1998-08-09T18:30:00.000+00:00",
+        "ssn": 898989892
+    },
+    {
+        "id": 104,
+        "firstName": "mark",
+        "lastName": "zuck",
+        "address": "Flat no: G-34, Black Den, Kharadi, Pune 411033",
+        "dateOfBirth": "1995-10-10T18:30:00.000+00:00",
+        "ssn": 898989891
+    },
+    {
+        "id": 105,
+        "firstName": "mark",
+        "lastName": "zuck",
+        "address": "Flat no: G-34, Black Den, Kharadi, Pune 411033",
+        "dateOfBirth": "1995-10-10T18:30:00.000+00:00",
+        "ssn": 898989891
+    },
+    {
+        "id": 111,
+        "firstName": "prince",
+        "lastName": "agrawal",
+        "address": "Flat no: C-12345, Life Republic, Main Road Ranchi 829122",
+        "dateOfBirth": "1995-08-18T18:30:00.000+00:00",
+        "ssn": 989889894
+    },
+    {
+        "id": 112,
+        "firstName": "prince",
+        "lastName": "agrawal",
+        "address": "Flat no: C-12345, Life Republic, Main Road Ranchi 829122",
+        "dateOfBirth": "1995-08-18T18:30:00.000+00:00",
+        "ssn": 989889894
+    }
+]
+
+------------------------------------
+
+2. Invalid id
+GET http://localhost:8080/api/v1/customers/999 
+   
+   {
+    "errors": [
+        "Cannot find customer"
+    ]
+}
+------------------------------------
+3. Valid Id
+GET http://localhost:8080/api/v1/customers/104
+
+{
+    "id": 104,
+    "firstName": "mark",
+    "lastName": "zuck",
+    "address": "Flat no: G-34, Black Den, Kharadi, Pune 411033",
+    "dateOfBirth": "1995-10-10T18:30:00.000+00:00",
+    "ssn": 898989891
+}
+
+------------------------------------
+4. Add customer with ID
+   POST http://localhost:8080/api/v1/customers
+   Request Payload: 
+   {
+    "id": 104,
+    "firstName": "mark",
+    "lastName": "zuck",
+    "address": "Flat no: G-34, Black Den, Kharadi, Pune 411033",
+    "dateOfBirth": "1995-10-10T18:30:00.000+00:00",
+    "ssn": 898989891
+   }
+   
+   Response: 
+	{
+    "errors": [
+        "Customer Id cannot be non-null"
+    ]
+	}
+------------------------------------
+5. Add customer with no ID
+	POST http://localhost:8080/api/v1/customers
+	
+	request payload: 
+	 {
+    "firstName": "mark",
+    "lastName": "zuck",
+    "address": "Flat no: G-34, Black Den, Kharadi, Pune 411033",
+    "dateOfBirth": "1995-10-10T18:30:00.000+00:00",
+    "ssn": 898989891
+   }
+   
+   response: 
+   {
+    "id": 113,
+    "firstName": "mark",
+    "lastName": "zuck",
+    "address": "Flat no: G-34, Black Den, Kharadi, Pune 411033",
+    "dateOfBirth": "1995-10-10T18:30:00.000+00:00",
+    "ssn": 898989891
+   }
+
+------------------------------------
+
+6. DELETE customer with invalid ID
+	
+   DELETE http://localhost:8080/api/v1/customers/999
+   Response: 
+   {
+    "errors": [
+        "No class com.demo.project.entity.Customer entity with id 999 exists!"
+    ]
+   }
+
+------------------------------------
+7. Delete customer with valid id:
+   DELETE http://localhost:8080/api/v1/customers/112
+   
+   Response: Customer Deleted with id:112
+
+
+------------------------------------
+8. update an existing customer with no ID
+
+PUT http://localhost:8080/api/v1/customers/
+Request payload: 
+
+	{
+    "firstName": "mark",
+    "lastName": "zuck",
+    "address": "Flat no: G-34, Black Den, Kharadi, Pune 411033",
+    "dateOfBirth": "1995-10-10T18:30:00.000+00:00",
+    "ssn": 898989891
+    }
+Response: 
+	{
+		"errors": [
+			"Customer id cannot be null"
+		]
+	}
+
+--------------------------------------
+9. update an existing customer with valid ID
+	PUT: http://localhost:8080/api/v1/customers/
+	Request Payload: 
+	
+	   {
+    "id": 113,
+    "firstName": "markII",
+    "lastName": "zuck",
+    "address": "Flat no: G-34, Black Den, Kharadi, Pune 411033",
+    "dateOfBirth": "1995-10-10T18:30:00.000+00:00",
+    "ssn": 898989891
+	}
+
+	Response Payload: 
+	{
+    "id": 113,
+    "firstName": "markII",
+    "lastName": "zuck",
+    "address": "Flat no: G-34, Black Den, Kharadi, Pune 411033",
+    "dateOfBirth": "1995-10-10T18:30:00.000+00:00",
+    "ssn": 898989891
+	}
